@@ -3,12 +3,17 @@
     <div class="card-holder">
       <div class="loading" v-if="profiles.length === 0">loading profiles</div>
       <transition-group :name="animateAs">
-        <Card v-for="profile in profiles"
-              v-bind="profile"
-              :withControls="true"
-              :key="profile.id"
-              @like="like(profile)"
-              @dislike="loseCard(profile)"></Card>
+        <v-touch v-for="profile in profiles"
+          :key="profile.id"
+          @swipeleft="loseCard(profile)"
+          @swiperight="like(profile)"
+        >
+          <Card v-bind="profile"
+                :withControls="true"
+                :key="profile.id"
+                @like="like(profile)"
+                @dislike="loseCard(profile)"></Card>
+        </v-touch>
       </transition-group>
    </div>
   </div>
@@ -87,15 +92,15 @@ h1 {
 }
 
 .dislike-leave-active {
-  animation: to-left 0.6s;
+  animation: to-left 1.6s;
 }
 
 .like-leave-active {
-  animation: to-right 0.6s;
+  animation: to-right 1.6s;
 }
 
 .match-leave-active {
-  animation: to-top 0.6s;
+  animation: to-top 1.6s;
 }
 
 
@@ -105,7 +110,7 @@ h1 {
   }
   100% {
     transform: translate(-300px, -200px) rotate(-45deg) scale(0.3);
-    opacity: 0.3;
+    opacity: 0.6;
   }
 }
 
@@ -115,7 +120,7 @@ h1 {
   }
   100% {
     transform: translate(0px, -800px) scale(0.3);
-    opacity: 0.3;
+    opacity: 0.6;
   }
 }
 
@@ -126,7 +131,7 @@ h1 {
   }
   100% {
     transform: translate(300px, -200px) rotate(45deg) scale(0.3);
-    opacity: 0.3;
+    opacity: 0.6;
   }
 }
 </style>

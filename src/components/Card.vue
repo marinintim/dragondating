@@ -53,6 +53,7 @@ img {
   margin: -10px -10px 0;
   object-fit: contain;
   display: block;
+  pointer-events: none;
 }
 
 .controls {
